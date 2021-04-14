@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Continued2</string>
+    <string name="idenficador">" Enter the identifier of 2 dogs"</string>
+    <string name="botao">buy dogs</string>
+</resources>
