@@ -1,9 +1,11 @@
 package com.example.continuada2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -16,39 +18,62 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val layoutLista: LinearLayout = findViewById(R.id.layout_lista)
+       atualizarLista()
+    }
 
-        // usando o objet para pegar a instância do objeto que invoca os EndPoints
+    fun atualizarLista() {
+
+        val layoutLista: LinearLayout = findViewById(R.id.layout_lista)
+        layoutLista.removeAllViews()
+
         val apiCachorros = ConexaoApiCachorros.criar()
 
-        // .enqueue() abre um processo ASSÍNCRONO (ou seja, paralelo, não "trava" a tela)
         apiCachorros.get().enqueue(object : Callback<List<Cachorro>> {
 
-            // onResponse é executando se chamada for feita com sucesso
             override fun onResponse(call: Call<List<Cachorro>>, response: Response<List<Cachorro>>) {
-                // response.body() -> obtém o corpo da resposta
+
                 response.body()?.forEach {
-                    // criando uma nova TextView
 
                     val tvCachorro = TextView(baseContext)
                     tvCachorro.text = "Id: ${it.id} - Raça: ${it.raca} - PreçoMédio: ${it.precoMedio} - IndicadoCriança: ${it.indicadoCrianca}"
 
-                    // adicionando a nova TextView no LinearLayout
                     layoutLista.addView(tvCachorro)
                 }
             }
 
-            // onFailure é executado se houver erro na chamada
             override fun onFailure(call: Call<List<Cachorro>>, t: Throwable) {
                 Log.e("api", t.message!!)
-                // t.printStackTrace()
                 Toast.makeText(baseContext, t.message, Toast.LENGTH_SHORT).show()
             }
         })
-
-
-
     }
 
-    fun comprar(view: View) {}
+    fun comprar(view: View) {
+
+        val apiCachorros = ConexaoApiCachorros.criar()
+
+        val tv:EditText = findViewById(R.id.tv_input1)
+        val tv2:EditText = findViewById(R.id.tv_input2)
+
+        val idOne = tv.text.toString().toInt()
+        val idTwo = tv2.text.toString().toInt()
+        
+        apiCachorros.get(idOne).enqueue(object : Callback<Cachorro> {
+            override fun onResponse(call: Call<Cachorro>, response: Response<Cachorro>) {
+                val cachorro = response.body()
+                if (cachorro != null ) {
+                    val intent = Intent(applicationContext, Tela3::class.java)
+                    startActivity(intent)
+                } else {
+                    val intent = Intent(applicationContext, Tela2::class.java)
+                    startActivity(intent)
+                }
+            }
+
+            override fun onFailure(call: Call<Cachorro>, t: Throwable) {
+                Toast.makeText(baseContext, "Erro: ${t.message!!}", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+    }
 }
