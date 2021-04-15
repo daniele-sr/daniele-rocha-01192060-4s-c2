@@ -29,14 +29,13 @@ class Tela3 : AppCompatActivity() {
                 val tvResultado: TextView = findViewById(R.id.tv_resultado)
                 val tvResultado2: TextView = findViewById(R.id.tv_resultado2)
                 val tvResultado3: TextView = findViewById(R.id.tv_resultado3)
-                
+
 
                 val cachorro = response.body()
 
                 if (cachorro != null ) {
-                    tvResultado.text = "Raça: ${idOne}"
-                    tvResultado2.text = "Raça: ${idTwo}"
-                    tvResultado3.text =
+                    tvResultado.text = "Raça: ${cachorro.raca}"
+                    tvResultado2.text = "Raça: ${cachorro.raca}"
 
                 } else {
                     val intent = Intent(applicationContext, Tela2::class.java)
