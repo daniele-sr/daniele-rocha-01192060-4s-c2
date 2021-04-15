@@ -2,4 +2,7 @@
     <string name="app_name">Continuada2</string>
     <string name="idenficador">Digite o idenficador de 2 cães</string>
     <string name="botao">Comprar cachorros</string>
+    <string name="cachorro1">Cachorro 1:</string>
+    <string name="cachorro2">Cachorro 2: </string>
+    <string name="preco">Preço total de compra: </string>
 </resources>

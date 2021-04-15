@@ -3,4 +3,7 @@
     <string name="app_name">Continued2</string>
     <string name="idenficador">" Enter the identifier of 2 dogs"</string>
     <string name="botao">buy dogs</string>
+    <string name="cachorro1">Dog 1:</string>
+    <string name="cachorro2">Dog 2:</string>
+    <string name="preco">"Total purchase price: "</string>
 </resources>
