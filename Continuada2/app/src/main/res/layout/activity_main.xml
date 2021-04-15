@@ -14,35 +14,56 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_identificador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/idenficador"
         android:textSize="25dp"
-        android:id="@+id/tv_identificador"
-        />
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <EditText
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_identificador"
         android:id="@+id/tv_input1"
-        android:inputType="number"
-        />
-
-    <EditText
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_input1"
-        android:id="@+id/tv_input2"
         android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/tv_identificador"
+         />
+
+    <EditText
+        android:id="@+id/tv_input2"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        app:layout_constraintTop_toBottomOf="@+id/tv_input1"
         />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_input2"
-        android:text="@string/botao"
+        android:layout_marginTop="8dp"
         android:backgroundTint="@color/black"
+        android:id="@+id/bt_comprar"
+        android:onClick="comprar"
+        android:text="@string/botao"
+        app:layout_constraintTop_toBottomOf="@+id/tv_input2"
+        tools:layout_editor_absoluteX="92dp" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/caoFeliz"
+        app:layout_constraintTop_toBottomOf="@+id/bt_comprar"
+        android:id="@+id/vt_cao1"
         />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:src="@drawable/caoFeliz2"
+        app:layout_constraintLeft_toRightOf="@+id/vt_cao1"
+        app:layout_goneMarginLeft="@+id/vt_cao1" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
